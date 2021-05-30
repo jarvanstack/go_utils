@@ -1,4 +1,4 @@
-module github.com/dengjiawen8955/go_utils/v1
+module github.com/dengjiawen8955/go_utils
 
 go 1.15
 
