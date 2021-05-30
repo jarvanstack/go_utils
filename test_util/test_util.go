@@ -30,6 +30,10 @@ func (test *TU)Start()  {
 	fmt.Printf("%s\n", "------run---------")
 	test.start = time.Now()
 }
+func (test *TU)StartWithComment(comment string)  {
+	fmt.Printf("------run:%s---------\n", comment)
+	test.start = time.Now()
+}
 func  (test *TU)End()  {
 	end := time.Now()
 	useNano := end.UnixNano() - test.start.UnixNano()
