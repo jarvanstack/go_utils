@@ -18,9 +18,9 @@ import (
 const NS_TO_S = 1000000000
 const NS_TO_MS = 1000000
 type TU struct {
-	start  time.Time
-	n uint32 //number of loop times.
-	comments string
+	start   time.Time
+	n       uint32 //number of loop times.
+	comment string
 }
 
 func NewTestUtil(n uint32)*TU {
@@ -39,10 +39,10 @@ func  (test *TU)End()  {
 	useNano := end.UnixNano() - test.start.UnixNano()
 	//(1)[%ds][%dms][%dns] TIME
 	second := float64(useNano)/float64(NS_TO_S)
-	fmt.Printf("(1)[%fs][%fms][%dns] TIME\n",second, float64(useNano)/float64(NS_TO_MS),useNano)
+	fmt.Printf("%s:(1)[%fs][%fms][%dns] TIME\n",test.comment,second, float64(useNano)/float64(NS_TO_MS),useNano)
 	//(2)[%d]LOOP TIMES
-	fmt.Printf("(2)[%d]LOOP TIMES\n",test.n)
+	fmt.Printf("%s:(2)[%d]LOOP TIMES\n",test.comment,test.n)
 	//(3)[%d]QPS
-	fmt.Printf("(3)[%f]QPS\n",float64(test.n)/second)
+	fmt.Printf("%s:(3)[%d]QPS\n",test.comment,int32(float64(test.n)/second))
 	fmt.Printf("%s\n", "------end---------")
 }
