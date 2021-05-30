@@ -39,6 +39,6 @@ func  (test *TU)End()  {
 	//(2)[%d]LOOP TIMES
 	fmt.Printf("(2)[%d]LOOP TIMES\n",test.n)
 	//(3)[%d]QPS
-	fmt.Printf("(3)[%f]QPS",float64(test.n)/second)
+	fmt.Printf("(3)[%f]QPS\n",float64(test.n)/second)
 	fmt.Printf("%s\n", "------end---------")
 }
