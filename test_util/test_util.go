@@ -32,6 +32,7 @@ func (test *TU)Start()  {
 }
 func (test *TU)StartWithComment(comment string)  {
 	fmt.Printf("------run:%s---------\n", comment)
+	test.comment = comment
 	test.start = time.Now()
 }
 func  (test *TU)End()  {
