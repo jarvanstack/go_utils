@@ -1,4 +1,4 @@
-package string
+package stringu
 
 import (
 	"crypto/md5"
