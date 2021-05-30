@@ -1,4 +1,4 @@
-package throwu
+package throw_util
 
 import (
 	"github.com/fwhezfwhez/errorx"
