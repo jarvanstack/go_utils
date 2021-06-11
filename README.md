@@ -48,12 +48,14 @@ import (
 	"github.com/dengjiawen8955/go_utils/syscall_util"
 	"github.com/dengjiawen8955/go_utils/throw_util"
 )
+
 func main() {
 	var err error
 	listen, err := syscall_util.Listen(9999)
 	throw_util.Throw(err)
-	for  {
-		conn := listen.Accept()
+	for {
+		conn, err := listen.Accept()
+		throw_util.Throw(err)
 		go func() {
 			defer conn.Close()
 			fmt.Printf("conn.ClientFd=%#v\n", conn.ClientFd)
@@ -62,4 +64,5 @@ func main() {
 		}()
 	}
 }
+
 ```

@@ -17,13 +17,13 @@ const (
 type SocketServer struct {
 	Fd int
 }
-func (s *SocketServer) Accept() (*SocketConn) {
+func (s *SocketServer) Accept() (*SocketConn,error) {
 	var err error
 	clientFd, _, err := syscall.Accept(s.Fd)
 	if err != nil {
-		return nil
+		return nil,err
 	}
-	return &SocketConn{ServerFd: s.Fd,ClientFd: clientFd}
+	return &SocketConn{ServerFd: s.Fd,ClientFd: clientFd},err
 }
 
 
