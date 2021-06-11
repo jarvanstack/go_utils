@@ -13,6 +13,7 @@ func Test_server(t *testing.T) {
 	throw_util.Throw(err)
 	for  {
 		conn := listen.Accept()
+		throw_util.Throw(err)
 		go func() {
 			defer conn.Close()
 			conn.Write([]byte("hi,syscall_util"))

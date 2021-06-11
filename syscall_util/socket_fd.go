@@ -2,7 +2,6 @@ package syscall_util
 
 import (
 	"fmt"
-	"github.com/dengjiawen8955/go_utils/throw_util"
 	"net"
 	"syscall"
 )
@@ -18,10 +17,12 @@ const (
 type SocketServer struct {
 	Fd int
 }
-func (s *SocketServer) Accept() *SocketConn {
+func (s *SocketServer) Accept() (*SocketConn) {
 	var err error
 	clientFd, _, err := syscall.Accept(s.Fd)
-	throw_util.Throw(err)
+	if err != nil {
+		return nil
+	}
 	return &SocketConn{ServerFd: s.Fd,ClientFd: clientFd}
 }
 

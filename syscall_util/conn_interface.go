@@ -8,6 +8,3 @@ type Conn interface {
 	Write([]byte)(writeN int,err error)
 	Close() error
 }
-type ServerFd interface {
-	Accept() (conn *Conn,err error)
-}

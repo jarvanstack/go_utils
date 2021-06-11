@@ -3,7 +3,7 @@
 ### quick start
 
 ```bash
-go get github.com/dengjiawen8955/go_utils
+go get -u github.com/dengjiawen8955/go_utils
 ```
 see the **_test file to learn how to use.
 
