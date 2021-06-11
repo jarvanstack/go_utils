@@ -37,3 +37,29 @@ func Test_test_util(t *testing.T) {
 #### 3. string_util
 
 3. [string_util](string_util) (1) get random string,(2) md5 ...
+
+### 4. syscall_util 
+
+expose some unsafe pointer or fd to help you to do syscall call.
+
+```bash
+import (
+	"fmt"
+	"github.com/dengjiawen8955/go_utils/syscall_util"
+	"github.com/dengjiawen8955/go_utils/throw_util"
+)
+func main() {
+	var err error
+	listen, err := syscall_util.Listen(9999)
+	throw_util.Throw(err)
+	for  {
+		conn := listen.Accept()
+		go func() {
+			defer conn.Close()
+			fmt.Printf("conn.ClientFd=%#v\n", conn.ClientFd)
+			fmt.Printf("conn.ServerFd=%#v\n", conn.ServerFd)
+			conn.Write([]byte("hi,syscall_util"))
+		}()
+	}
+}
+```
