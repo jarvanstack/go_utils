@@ -41,6 +41,7 @@ func bytesToIntU(b []byte) (int, error) {
 
 
 
+
 //字节数(大端)组转成int(有符号)
 func bytesToIntS(b []byte) (int, error) {
 	if len(b) == 3 {
@@ -65,25 +66,32 @@ func bytesToIntS(b []byte) (int, error) {
 	}
 }
 
-
-//整形转换成字节
-func IntToBytes(n int,b byte) ([]byte,error) {
-	switch b {
+//IntToBytes
+//int转换成byte[]（大端）
+//byteNumber 字节数组的数量.
+//强制支持 64 位,最大兼容 32 位
+func IntToBytes(n int, byteNumber uint8) ([]byte,error) {
+	switch byteNumber {
 	case 1:
 		tmp := int8(n)
 		bytesBuffer := bytes.NewBuffer([]byte{})
-		binary.Write(bytesBuffer, binary.BigEndian, &tmp)
-		return bytesBuffer.Bytes(),nil
+		err := binary.Write(bytesBuffer, binary.BigEndian, &tmp)
+		return bytesBuffer.Bytes(),err
 	case 2:
 		tmp := int16(n)
 		bytesBuffer := bytes.NewBuffer([]byte{})
-		binary.Write(bytesBuffer, binary.BigEndian, &tmp)
-		return bytesBuffer.Bytes(),nil
-	case 3,4:
+		err := binary.Write(bytesBuffer, binary.BigEndian, &tmp)
+		return bytesBuffer.Bytes(),err
+	case 4:
 		tmp := int32(n)
 		bytesBuffer := bytes.NewBuffer([]byte{})
-		binary.Write(bytesBuffer, binary.BigEndian, &tmp)
-		return bytesBuffer.Bytes(),nil
+		err := binary.Write(bytesBuffer, binary.BigEndian, &tmp)
+		return bytesBuffer.Bytes(),err
+	case 8:
+		tmp := int64(n)
+		bytesBuffer := bytes.NewBuffer([]byte{})
+		err := binary.Write(bytesBuffer, binary.BigEndian, &tmp)
+		return bytesBuffer.Bytes(),err
 	}
-	return nil,fmt.Errorf("IntToBytes b param is invaild")
+	return nil,fmt.Errorf("IntToBytes bit param is invaild")
 }
