@@ -11,3 +11,8 @@ func GetMd5ByStr(str string) string {
 	md5str := fmt.Sprintf("%x", has)
 	return md5str
 }
+func GetMd5ByBytes(data []byte)string  {
+	has := md5.Sum(data)
+	md5str := fmt.Sprintf("%x", has)
+	return md5str
+}
