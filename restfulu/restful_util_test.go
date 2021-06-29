@@ -1,4 +1,4 @@
-package restful_util
+package restfulu
 
 import (
 	"fmt"

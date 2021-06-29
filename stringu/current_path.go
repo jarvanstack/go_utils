@@ -1,4 +1,4 @@
-package string_util
+package stringu
 
 import (
 	"log"

@@ -1,4 +1,4 @@
-package net_util
+package netu
 
 import (
 	"bufio"

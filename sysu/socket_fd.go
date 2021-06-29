@@ -1,4 +1,4 @@
-package syscall_util
+package sysu
 
 import (
 	"fmt"

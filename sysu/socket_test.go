@@ -1,8 +1,8 @@
-package syscall_util
+package sysu
 
 import (
 	"fmt"
-	"github.com/dengjiawen8955/go_utils/throw_util"
+	"github.com/dengjiawen8955/go_utils/throwu"
 	"net"
 	"testing"
 )
@@ -10,14 +10,14 @@ import (
 func Test_server(t *testing.T) {
 	var err error
 	listen, err := Listen(9999)
-	throw_util.Throw(err)
+	throwu.Throw(err)
 	for {
 		conn, err := listen.Accept()
-		throw_util.Throw(err)
-		throw_util.Throw(err)
+		throwu.Throw(err)
+		throwu.Throw(err)
 		go func() {
 			defer conn.Close()
-			conn.Write([]byte("hi,syscall_util"))
+			conn.Write([]byte("hi,sysu"))
 		}()
 	}
 
@@ -25,10 +25,10 @@ func Test_server(t *testing.T) {
 func Test_client(t *testing.T) {
 	var err error
 	conn, err := net.Dial("tcp", ":9999")
-	throw_util.Throw(err)
+	throwu.Throw(err)
 	buf := make([]byte, 1024)
 	readN, err := conn.Read(buf)
-	throw_util.Throw(err)
+	throwu.Throw(err)
 	fmt.Printf("buf[:readN]=%s\n", buf[:readN])
 
 }

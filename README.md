@@ -10,7 +10,7 @@ see the **_test file to learn how to use.
 ### utils
 
 #### 1. testu
-[test_util](test_util/) loop time +  time cost + ops (QPS)
+[test_util](testu/) loop time +  time cost + ops (QPS)
 
 How to use?
 ```go
@@ -32,11 +32,11 @@ func Test_test_util(t *testing.T) {
 
 #### 2. throw_util
 
-[throw_util](throw_util) try catch the error can print stack error to help you find where is error happen.
+[throw_util](throwu) try catch the error can print stack error to help you find where is error happen.
 
 #### 3. string_util
 
-3. [string_util](string_util) (1) get random string,(2) md5 ...
+3. [string_util](stringu) (1) get random string,(2) md5 ...
 
 ### 4. syscall_util 
 
@@ -51,11 +51,11 @@ import (
 
 func main() {
 	var err error
-	listen, err := syscall_util.Listen(9999)
-	throw_util.Throw(err)
+	listen, err := sysu.Listen(9999)
+	throwu.Throw(err)
 	for {
 		conn, err := listen.Accept()
-		throw_util.Throw(err)
+		throwu.Throw(err)
 		go func() {
 			defer conn.Close()
 			fmt.Printf("conn.ClientFd=%#v\n", conn.ClientFd)

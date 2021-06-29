@@ -1,4 +1,4 @@
-package base_util
+package baseu
 
 import (
 	"bytes"
@@ -13,16 +13,18 @@ func BytesToInt(b []byte, isSymbol bool) (int, error) {
 	}
 	return bytesToIntU(b)
 }
-
+//0000
+//1111 uint max
+//0111 int max
 const (
-	Uint8Max = ^uint8(0)
-	Uint16Max = ^uint16(0)
-	Uint32Max = ^uint32(0)
-	Uint64Max = ^uint64(0)
-	Int8Max  = ^uint8(0) >> 1
-	Int16Max  = ^uint16(0) >> 1
-	Int32Max  = ^uint32(0) >> 1
-	Int64Max  = ^uint64(0) >> 1
+	UINT8_MAX  = ^uint8(0)
+	UINT16_MAX = ^uint16(0)
+	UINT32_MAX = ^uint32(0)
+	UINT64_MAX = ^uint64(0)
+	INT8_MAX   = ^uint8(0) >> 1
+	INT16_MAX  = ^uint16(0) >> 1
+	INT32_MAX  = ^uint32(0) >> 1
+	INT64_MAX  = ^uint64(0) >> 1
 )
 
 //字节数(大端)组转成int(无符号的)
