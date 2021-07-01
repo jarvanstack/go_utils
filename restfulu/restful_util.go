@@ -37,10 +37,23 @@ func Ok(in interface{}) []byte {
 	return bytes
 
 }
-func Fail(in interface{}) []byte {
+func BadRequest(in interface{}) []byte {
 	restfulResp := RestfulResp{
 		Code: 400,
 		Msg:  "BAD_REQUEST",
+		Data: in,
+	}
+	bytes, err := json.Marshal(restfulResp)
+	if err != nil {
+		log.Printf("string=%s\n", "解析json绑定错误")
+	}
+	return bytes
+
+}
+func ServerError(in interface{}) []byte {
+	restfulResp := RestfulResp{
+		Code: 500,
+		Msg:  "SERVER_ERROR",
 		Data: in,
 	}
 	bytes, err := json.Marshal(restfulResp)
