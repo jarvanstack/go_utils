@@ -7,6 +7,13 @@ import (
 	"strings"
 )
 // Trace 返回错误的 trace 自己打印即可
+// Usage:
+//	defer func() {
+//		if err := recover(); err != nil {
+//			log.Printf("%s\n\n", throwu.Trace(err))
+//			ctx.Json(restfulu.ServerError("SERVER_ERROR"))
+//		}
+//	}()
 func Trace(err interface{}) string {
 	message := fmt.Sprintf("%s", err)
 	var pcs [32]uintptr
