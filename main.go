@@ -9,10 +9,11 @@ import (
 )
 
 func main() {
-	subs := stringu.GetSubStringByRegex("tao123shi5han567", `(.*?)(\d+)(.*?)\d(.*)\d`)
-	for _, v := range subs {
-		fmt.Printf("%s\n", v)
-
+	str := `Content-Disposition: form-data; name="file"; filename="Snipaste_2021-07-07_15-49-56.png"`
+	regx := `Content-Disposition: (.*?); name="(.*?)"; filename="(.*?)"`
+	subs := stringu.GetSubStringByRegex(str, regx)
+	for _, s := range subs {
+		fmt.Printf("%s\n", s)
 	}
 	//输出
 	// tao
