@@ -11,7 +11,10 @@ import (
 func main() {
 	str := `Content-Disposition: form-data; name="file"; filename="Snipaste_2021-07-07_15-49-56.png"`
 	regx := `Content-Disposition: (.*?); name="(.*?)"; filename="(.*?)"`
-	subs := stringu.GetSubStringByRegex(str, regx)
+	subs, err := stringu.GetSubStringByRegex(str, regx)
+	if err != nil {
+		return
+	}
 	for _, s := range subs {
 		fmt.Printf("%s\n", s)
 	}

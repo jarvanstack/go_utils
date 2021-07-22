@@ -1,10 +1,13 @@
 package stringu
 
-import "regexp"
+import (
+	"fmt"
+	"regexp"
+)
 
 // 通过正则表达式或者子字符串.
 //
-// 1.第二个正则字符串使用 ` 飘号包裹可以解决转义问题
+// 1.字符串使用 ` 飘号包裹可以解决转义问题
 //
 // 2. 小括号包裹子字符串
 //
@@ -12,18 +15,20 @@ import "regexp"
 //
 // Example:
 //
-//	subs := stringu.GetSubStringByRegex("tao123shi5han567", `(.*?)(\d+)(.*?)\d(.*)\d`)
-//	for _, v := range subs {
-//		fmt.Printf("%s\n", v)
-//
-//	}
-//	//输出
-//	// tao
-//	// 123
-//	// shi
-//	// han56
-func GetSubStringByRegex(str, regx string) []string {
+// 	str := `Content-Disposition: form-data; name="file"; filename="Snipaste.png"`
+// 	regx := `Content-Disposition: (.*?); name="(.*?)"; filename="(.*?)"`
+// 	subs := stringu.GetSubStringByRegex(str, regx)
+// 	for _, s := range subs {
+// 		fmt.Printf("%s\n", s)
+// 	}
+// 	// form-data
+// 	// file
+// 	// Snipaste.png
+func GetSubStringByRegex(str, regx string) ([]string, error) {
 	reg := regexp.MustCompile(regx)
 	subs := reg.FindStringSubmatch(str)
-	return subs[1:]
+	if len(subs) >= 1 {
+		return subs[1:], nil
+	}
+	return nil, fmt.Errorf("[error]:reg result is nil")
 }
