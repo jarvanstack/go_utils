@@ -32,7 +32,7 @@ func Test_test_util(t *testing.T) {
 
 #### 2. throw_util
 
-[throw_util](throwu) try catch the error can print stack error to help you find where is error happen.
+[throw_util](erru) try catch the error can print stack error to help you find where is error happen.
 
 #### 3. string_util
 
@@ -52,10 +52,10 @@ import (
 func main() {
 	var err error
 	listen, err := sysu.Listen(9999)
-	throwu.Throw(err)
+	erru.Throw(err)
 	for {
 		conn, err := listen.Accept()
-		throwu.Throw(err)
+		erru.Throw(err)
 		go func() {
 			defer conn.Close()
 			fmt.Printf("conn.ClientFd=%#v\n", conn.ClientFd)

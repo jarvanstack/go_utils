@@ -1,4 +1,4 @@
-package throwu
+package erru
 
 import (
 	"fmt"
@@ -6,11 +6,12 @@ import (
 	"runtime"
 	"strings"
 )
+
 // Trace 返回错误的 trace 自己打印即可
 // Usage:
 //	defer func() {
 //		if err := recover(); err != nil {
-//			log.Printf("%s\n\n", throwu.Trace(err))
+//			log.Printf("%s\n\n", erru.Trace(err))
 //			ctx.Json(restfulu.ServerError("SERVER_ERROR"))
 //		}
 //	}()
@@ -27,7 +28,7 @@ func Trace(err interface{}) string {
 	}
 	return str.String()
 }
-func catch()  {
+func catch() {
 	err := recover()
 	if err != nil {
 		err.(errorx.Error).PrintStackTrace()
