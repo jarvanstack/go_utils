@@ -2,6 +2,7 @@ package logger
 
 import (
 	"io/ioutil"
+	"time"
 
 	"github.com/natefinch/lumberjack"
 	"go.uber.org/zap"
@@ -40,7 +41,13 @@ func init() {
 
 	//初始化 logger
 	encoderConfig := zap.NewProductionEncoderConfig()
-	encoderConfig.EncodeTime = zapcore.ISO8601TimeEncoder
+	//这个是标准但是不好看的时间
+	// encoderConfig.EncodeTime = zapcore.ISO8601TimeEncoder
+	// 自定义时间输出格式
+	customTimeEncoder := func(t time.Time, enc zapcore.PrimitiveArrayEncoder) {
+		enc.AppendString("2006-01-02 15:04:05.000")
+	}
+	encoderConfig.EncodeTime = customTimeEncoder
 	encoderConfig.EncodeLevel = zapcore.LowercaseLevelEncoder
 	encoder := zapcore.NewJSONEncoder(encoderConfig)
 
