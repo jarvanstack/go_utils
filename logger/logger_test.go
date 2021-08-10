@@ -14,6 +14,11 @@ func Test_func(t *testing.T) {
 	Info("info")
 	Debug("debug")
 	Error("error")
+	//增加额外的上下文字段
+	//同样是累加,不会覆盖
+	//使用比 With 较方便, 但是性能略低.
+	Sugar().Infow("msg", "key", "value", "key2", "value2", "key2", 1)
+	Sugar().Debugw("msg", "key", "value", "key2", 1)
 }
 
 //调试 Debug 级别消息不记录 Production
