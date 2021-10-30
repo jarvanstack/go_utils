@@ -24,7 +24,7 @@ func NewConnCtx(conn net.Conn) *ConnCtx {
 	}
 }
 
-//粘包协议数据发送
+//粘包协议数据发送,自带 flush
 func (c *ConnCtx) WriteData(data []byte) error {
 	var err error
 	l, err := baseu.IntToBytes(len(data), 4)
