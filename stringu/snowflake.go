@@ -109,3 +109,8 @@ func NextId() int64 {
 	//unit64 是只有正数的版本.
 	return int64(id)
 }
+
+//适用于鲤鱼行的 雪花算法
+func TheoPracticeNextId() int64 {
+	return time.Now().UnixMilli()
+}
