@@ -11,9 +11,11 @@ import (
 
 func SpeedLimitDefault(w http.ResponseWriter, r *http.Request) (err error) {
 	ip := ClientIP(r)
-	//ip 为空 或者太快了
+	//ip 为空 或者太快了就报错
 	if ip == "" || !ltbDefault.Allow(ip) {
 		speedLimitWriteDefault(w)
+		err = erru.NewError2(400, "请求频繁")
+		return
 	}
 	return
 
