@@ -29,8 +29,8 @@ func GetUserIdStrByContext(ctx context.Context) (userId string, err error) {
 	return
 }
 
-func Auth1Default(w http.ResponseWriter, r *http.Request, privateKey string) (err error) {
-	err = auth1(w, r, privateKey)
+func Auth1Default(w http.ResponseWriter, r *http.Request, privateKey string) (req *http.Request, err error) {
+	req, err = auth1(w, r, privateKey)
 	if err != nil {
 		//自动回写错误
 		errResp := erru.NewError2(401, "401")
@@ -43,14 +43,15 @@ func Auth1Default(w http.ResponseWriter, r *http.Request, privateKey string) (er
 		w.WriteHeader(401)
 		bs, err := json.Marshal(errResp)
 		if err != nil {
-			return err
+			return nil, err
 		}
 		_, err = w.Write(bs)
-		return err
+		return nil, err
 	}
 	return
 }
-func auth1(w http.ResponseWriter, r *http.Request, privateKey string) (err error) {
+func auth1(w http.ResponseWriter, r *http.Request, privateKey string) (req *http.Request, err error) {
+	req = r
 	//1. 拿到 token
 	t := r.Header.Get("authorization")
 	if t == "" {
@@ -70,8 +71,8 @@ func auth1(w http.ResponseWriter, r *http.Request, privateKey string) (err error
 		return
 	}
 	//赋值 ctx
-	ctx := context.WithValue(r.Context(), constsu.TokenKeyUserId, userId)
-	r = r.WithContext(ctx)
+	ctx := context.WithValue(r.Context(), "userId", userId)
+	req = r.WithContext(ctx)
 	//4.拿到时间戳
 	ts, ok := mc[constsu.TokenKeyTs].(float64)
 	if !ok {
