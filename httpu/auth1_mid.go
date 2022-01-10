@@ -20,6 +20,14 @@ func GetUserIdByContext(ctx context.Context) (userId int64, err error) {
 	userId = int64(uif)
 	return
 }
+func GetUserIdStrByContext(ctx context.Context) (userId string, err error) {
+	userId, ok := ctx.Value(constsu.TokenKeyUserId).(string)
+	if !ok {
+		err = erru.NewError2(401, "token解析userId失败")
+		return
+	}
+	return
+}
 
 func Auth1Default(w http.ResponseWriter, r *http.Request, privateKey string) (err error) {
 	err = auth1(w, r, privateKey)
