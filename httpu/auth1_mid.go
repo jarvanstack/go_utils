@@ -11,6 +11,16 @@ import (
 	"github.com/dengjiawen8955/go_utils/stringu"
 )
 
+func GetUserIdByContext(ctx context.Context) (userId int64, err error) {
+	uif, ok := ctx.Value(constsu.TokenKeyUserId).(float64)
+	if !ok {
+		err = erru.NewError2(401, "token解析userId失败")
+		return
+	}
+	userId = int64(uif)
+	return
+}
+
 func Auth1Default(w http.ResponseWriter, r *http.Request, privateKey string) (err error) {
 	err = auth1(w, r, privateKey)
 	if err != nil {
