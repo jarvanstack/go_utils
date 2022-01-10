@@ -6,9 +6,11 @@ require (
 	github.com/BurntSushi/toml v0.4.1 // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/fwhezfwhez/errorx v1.1.0
+	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da
 	github.com/kr/pretty v0.2.0 // indirect
 	github.com/natefinch/lumberjack v2.0.0+incompatible
 	github.com/pkg/errors v0.9.1 // indirect
+	github.com/stretchr/testify v1.7.0
 	go.uber.org/zap v1.18.1
 	golang.org/x/lint v0.0.0-20210508222113-6edffad5e616 // indirect
 	golang.org/x/sys v0.0.0-20211002104244-808efd93c36d // indirect
