@@ -28,6 +28,14 @@ func GetUserIdStrByContext(ctx context.Context) (userId string, err error) {
 	}
 	return
 }
+func GetTokenByContext(ctx context.Context) (token string, err error) {
+	token, ok := ctx.Value(constsu.TokenKey).(string)
+	if !ok {
+		err = erru.NewError2(401, "token解析token失败")
+		return
+	}
+	return
+}
 
 func Auth1Default(w http.ResponseWriter, r *http.Request, privateKey string) (req *http.Request, err error) {
 	req, err = auth1(w, r, privateKey)
@@ -53,13 +61,13 @@ func Auth1Default(w http.ResponseWriter, r *http.Request, privateKey string) (re
 func auth1(w http.ResponseWriter, r *http.Request, privateKey string) (req *http.Request, err error) {
 	req = r
 	//1. 拿到 token
-	t := r.Header.Get("authorization")
-	if t == "" {
+	token := r.Header.Get("authorization")
+	if token == "" {
 		err = erru.NewError2(401, "401拿不到authorization")
 		return
 	}
 	//2.解析 token
-	mc, err := stringu.TokenUnmarshal(t, privateKey)
+	mc, err := stringu.TokenUnmarshal(token, privateKey)
 	if err != nil {
 		err = erru.NewError2(401, "401解析token失败")
 		return
@@ -70,8 +78,10 @@ func auth1(w http.ResponseWriter, r *http.Request, privateKey string) (req *http
 		err = erru.NewError2(401, "401拿不到userId")
 		return
 	}
-	//赋值 ctx
-	ctx := context.WithValue(r.Context(), "userId", userId)
+	//赋值 ctx  userId
+	ctx := context.WithValue(r.Context(), constsu.TokenKeyUserId, userId)
+	//赋值 token
+	ctx = context.WithValue(ctx, constsu.TokenKey, token)
 	req = r.WithContext(ctx)
 	//4.拿到时间戳
 	ts, ok := mc[constsu.TokenKeyTs].(float64)
