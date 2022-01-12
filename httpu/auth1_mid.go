@@ -41,6 +41,13 @@ func Auth1Default(w http.ResponseWriter, r *http.Request, privateKey string) (re
 	req, err = auth1(w, r, privateKey)
 	if err != nil {
 		//自动回写错误
+		// {
+		// 	"err": {
+		// 		"code": 401,
+		// 		"msg": "401token",
+		// 		"notice": "401"
+		// 	}
+		// }
 		errResp := erru.NewError2(401, "401")
 		switch e := err.(type) {
 		case *erru.Err2:
@@ -49,7 +56,9 @@ func Auth1Default(w http.ResponseWriter, r *http.Request, privateKey string) (re
 		default:
 		}
 		w.WriteHeader(401)
-		bs, err := json.Marshal(errResp)
+		m := make(map[string]erru.Err2)
+		m["err"] = *errResp
+		bs, err := json.Marshal(m)
 		if err != nil {
 			return nil, err
 		}
