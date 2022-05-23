@@ -2,9 +2,9 @@ package logger
 
 import (
 	"io/ioutil"
+	"os"
 	"time"
 
-	"github.com/natefinch/lumberjack"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"gopkg.in/yaml.v2"
@@ -52,17 +52,18 @@ func init() {
 	encoder := zapcore.NewJSONEncoder(encoderConfig)
 
 	//文件writeSyncer
-	fileWriteSyncer := zapcore.AddSync(&lumberjack.Logger{
-		Filename:   "./logs/app.log", //日志文件存放目录
-		MaxSize:    1024,             //文件大小限制,单位MB
-		MaxBackups: 5,                //最大保留日志文件数量
-		MaxAge:     30,               //日志文件保留天数
-		Compress:   false,            //是否压缩处理
-	})
+	// fileWriteSyncer := zapcore.AddSync(&lumberjack.Logger{
+	// 	Filename:   "./logs/app.log", //日志文件存放目录
+	// 	MaxSize:    1024,             //文件大小限制,单位MB
+	// 	MaxBackups: 5,                //最大保留日志文件数量
+	// 	MaxAge:     30,               //日志文件保留天数
+	// 	Compress:   false,            //是否压缩处理
+	// })
 	//控制台输出 zapcore.NewMultiWriteSyncer(fileWriteSyncer,zapcore.AddSync(os.Stdout))
-	fileCore := zapcore.NewCore(encoder, fileWriteSyncer, zapcore.DebugLevel)
+	consoleWriteSyncer := zapcore.NewMultiWriteSyncer(zapcore.AddSync(os.Stdout))
+	core := zapcore.NewCore(encoder, consoleWriteSyncer, zapcore.DebugLevel)
 	//AddCaller()为显示文件名和行号
-	logger = zap.New(fileCore, zap.AddCaller(), zap.AddCallerSkip(1)).Sugar()
+	logger = zap.New(core, zap.AddCaller(), zap.AddCallerSkip(1)).Sugar()
 }
 
 func Sugar() *zap.SugaredLogger {
