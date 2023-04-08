@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 
-	"github.com/dengjiawen8955/go_utils/erru"
-	"github.com/dengjiawen8955/go_utils/logger"
-	"github.com/dengjiawen8955/go_utils/stringu"
-	"github.com/dengjiawen8955/go_utils/sysu"
+	"github.com/jarvanstack/go_utils/erru"
+	"github.com/jarvanstack/go_utils/logger"
+	"github.com/jarvanstack/go_utils/stringu"
+	"github.com/jarvanstack/go_utils/sysu"
 )
 
 func main() {

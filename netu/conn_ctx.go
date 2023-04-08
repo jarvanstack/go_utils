@@ -5,8 +5,8 @@ import (
 	"io"
 	"net"
 
-	"github.com/dengjiawen8955/go_utils/baseu"
-	"github.com/dengjiawen8955/go_utils/erru"
+	"github.com/jarvanstack/go_utils/baseu"
+	"github.com/jarvanstack/go_utils/erru"
 )
 
 //封装粘包协议 + reader + writer 缓冲

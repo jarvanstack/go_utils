@@ -3,8 +3,8 @@ package stringu
 import (
 	"time"
 
-	"github.com/dengjiawen8955/go_utils/logger"
 	jwt "github.com/dgrijalva/jwt-go"
+	"github.com/jarvanstack/go_utils/logger"
 )
 
 // jwt 密钥生成

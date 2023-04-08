@@ -3,7 +3,7 @@ package netu
 import (
 	"net"
 
-	"github.com/dengjiawen8955/go_utils/logger"
+	"github.com/jarvanstack/go_utils/logger"
 )
 
 func GetIpV4() (ips []string, err error) {

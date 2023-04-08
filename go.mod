@@ -1,4 +1,4 @@
-module github.com/dengjiawen8955/go_utils
+module github.com/jarvanstack/go_utils
 
 go 1.15
 

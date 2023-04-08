@@ -5,7 +5,7 @@ import (
 	"net"
 	"testing"
 
-	"github.com/dengjiawen8955/go_utils/erru"
+	"github.com/jarvanstack/go_utils/erru"
 )
 
 func Test_server(t *testing.T) {

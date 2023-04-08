@@ -3,7 +3,7 @@
 ### quick start
 
 ```bash
-go get -u github.com/dengjiawen8955/go_utils
+go get -u github.com/jarvanstack/go_utils
 ```
 see the **_test file to learn how to use.
 
@@ -16,7 +16,7 @@ How to use?
 ```go
 package main
 import (
-"github.com/dengjiawen8955/go_utils/test_util"
+"github.com/jarvanstack/go_utils/test_util"
 "testing"
 "time"
 )
@@ -45,8 +45,8 @@ expose some unsafe pointer or fd to help you to do syscall call.
 ```bash
 import (
 	"fmt"
-	"github.com/dengjiawen8955/go_utils/syscall_util"
-	"github.com/dengjiawen8955/go_utils/throw_util"
+	"github.com/jarvanstack/go_utils/syscall_util"
+	"github.com/jarvanstack/go_utils/throw_util"
 )
 
 func main() {

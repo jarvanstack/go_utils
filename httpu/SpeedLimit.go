@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/dengjiawen8955/go_utils/erru"
+	"github.com/jarvanstack/go_utils/erru"
 )
 
 func SpeedLimitDefault(w http.ResponseWriter, r *http.Request) (err error) {

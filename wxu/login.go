@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/dengjiawen8955/go_utils/logger"
+	"github.com/jarvanstack/go_utils/logger"
 )
 
 type WxLoginResp struct {

@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/dengjiawen8955/go_utils/constsu"
-	"github.com/dengjiawen8955/go_utils/erru"
-	"github.com/dengjiawen8955/go_utils/stringu"
+	"github.com/jarvanstack/go_utils/constsu"
+	"github.com/jarvanstack/go_utils/erru"
+	"github.com/jarvanstack/go_utils/stringu"
 )
 
 func GetUserIdByContext(ctx context.Context) (userId int64, err error) {
